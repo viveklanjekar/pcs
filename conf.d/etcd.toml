@@ -1,0 +1,6 @@
+[template]
+src = "etcd.tmpl"
+dest = "/etc/sysconfig/etcd"
+keys = [
+    "/etcd/nodes"
+]

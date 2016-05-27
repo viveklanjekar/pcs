@@ -1,0 +1,12 @@
+[Unit]
+Description=Confd watcher
+After=pcsd_setup.service
+
+[Service]
+ExecStartPre=/usr/bin/etcdctl --endpoint "$ETCD_ENDPOINTS" set /hacluster/nodelist "$NODELIST"
+ExecStart=/usr/local/bin/confd -watch=true -interval=60 -node http://192.168.2.253:2379
+EnvironmentFile=/etc/sysconfig/cluster_setup
+EnvironmentFile=/etc/sysconfig/pass
+
+[Install]
+WantedBy=multi-user.target

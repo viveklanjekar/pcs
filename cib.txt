@@ -1,0 +1,18 @@
+primitive ClusterIP IPaddr2 \
+	params ip=192.168.2.123 nic=virtual2 cidr_netmask=24 \
+	op monitor interval=30s
+primitive ClusterIPext IPaddr2 \
+	params ip=134.157.183.92 cidr_netmask=23 \
+	op monitor interval=30s
+primitive srv_conntrackd conntrackd
+ms conntrackd srv_conntrackd \
+	meta master-max=1 master-node-max=1 clone-max=2 clone-node-max=1 notify=true target-role=Started
+location cli-prefer-ClusterIP ClusterIP role=Started inf: artimed
+colocation website-with-ip inf: conntrackd:Master ClusterIPext ClusterIP
+property cib-bootstrap-options: \
+	stonith-enabled=false \
+	no-quorum-policy=ignore \
+	have-watchdog=false \
+	cluster-infrastructure=corosync \
+	cluster-name=master
+
