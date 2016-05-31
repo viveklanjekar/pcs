@@ -1,7 +1,0 @@
-[template]
-src = "pass.tmpl"
-dest = "/etc/sysconfig/pass"
-keys = [
-    "/hacluster/pass"
-]
-#reload_cmd = "/usr/local/bin/changepass"

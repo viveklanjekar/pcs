@@ -1,7 +1,0 @@
-[template]
-src = "newnode.tmpl"
-dest = "/etc/sysconfig/newnode"
-keys = [
-    "/hacluster/newnode"
-]
-reload_cmd = "/usr/local/bin/setup_cluster.sh"

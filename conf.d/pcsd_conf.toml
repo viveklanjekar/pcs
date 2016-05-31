@@ -1,7 +1,0 @@
-[template]
-src = "pcsd_conf.tmpl"
-dest = "/etc/sysconfig/cluster_setup"
-keys = [
-    "/hacluster/nodelist"
-]
-reload_cmd = "/usr/local/bin/setup_cluster.sh"
