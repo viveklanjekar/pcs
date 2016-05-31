@@ -1,0 +1,12 @@
+[Unit]
+Description=Password watcher
+After=pcsd.service
+
+[Service]
+WorkingDirectory=/var/lib/pcsd
+ExecStart=/usr/bin/pcs-etcd watch_pass
+EnvironmentFile=/etc/sysconfig/my_ip
+EnvironmentFile=/etc/sysconfig/etcd
+
+[Install]
+WantedBy=multi-user.target
