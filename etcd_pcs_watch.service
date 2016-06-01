@@ -1,6 +1,6 @@
 [Unit]
-Description=Etcd config watcher
-After=pcsd.service
+Description=etcd pcs watch
+After=create_or_join_pcs.service
 
 [Service]
 ExecStart=/usr/bin/pcs-etcd watch

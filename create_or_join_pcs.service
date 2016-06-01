@@ -1,0 +1,11 @@
+[Unit]
+Description=join or create pcs cluster
+After=pcsd.service
+
+[Service]
+ExecStart=/usr/bin/create_or_join_cluster.sh
+RemainAfterExit=yes
+Type=notify
+
+[Install]
+WantedBy=multi-user.target

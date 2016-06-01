@@ -1,6 +1,6 @@
 [Unit]
 Description=Password watcher
-After=pcsd.service
+Before=pcsd.service
 
 [Service]
 WorkingDirectory=/var/lib/pcsd
