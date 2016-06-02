@@ -4,8 +4,7 @@ MAINTAINER Peter Schiffer <pschiffe@redhat.com>
 
 ENV container=docker FIRST_START=True
 
-RUN yum -y clean all && yum -y --setopt=tsflags=nodocs upgrade \
-    && yum -y --setopt=tsflags=nodocs install pcs which conntrack \
+RUN yum -y clean all && yum -y --setopt=tsflags=nodocs install pcs which conntrack \
 
 RUN yum install -y epel-release && yum install -y python-pip passwd
 RUN pip install https://github.com/mvdbeek/pacemaker-etcd/archive/master.zip &&\
