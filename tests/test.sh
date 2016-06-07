@@ -14,10 +14,12 @@ docker run -d --net net1 --ip 192.168.10.10 \
 sleep 2s
 docker exec etcd /etcdctl set /hacluster/user hacluster
 docker exec etcd /etcdctl set /hacluster/password pass
-docker run -d --name=pcs1 --security-opt seccomp:unconfined -e ETCD="192.168.10.10:2379" -e "MY_IP=192.168.10.20" --net=net1 --ip 192.168.10.20 --cap-add=NET_ADMIN  -v /sys/fs/cgroup:/sys/fs/cgroup:ro -e "BOOTSTRAP=True" pcs
-sleep 90s
+docker exec etcd /etcdctl mkdir /hacluster/nodes
+docker run -d --name=pcs1 --security-opt seccomp:unconfined -e ETCD="192.168.10.10:2379" -e "MY_IP=192.168.10.20" --net=net1 --ip 192.168.10.20 --cap-add=NET_ADMIN  -v /sys/fs/cgroup:/sys/fs/cgroup:ro pcs
+sleep 15s
 docker run -d --name=pcs2 --security-opt seccomp:unconfined -e ETCD="192.168.10.10:2379" -e "MY_IP=192.168.10.21" --net=net1 --ip 192.168.10.21 --cap-add=NET_ADMIN  -v /sys/fs/cgroup:/sys/fs/cgroup:ro pcs
-#sleep 90s
-#docker run -d --name=pcs3 --security-opt seccomp:unconfined -e ETCD="192.168.10.10:2379" -e "MY_IP=192.168.10.22" --net=net1 --ip 192.168.10.22 --cap-add=NET_ADMIN  -v /sys/fs/cgroup:/sys/fs/cgroup:ro pcs
-sleep 90s && docker exec pcs2 journalctl && docker exec pcs2 pcs status
+sleep 15s
+docker run -d --name=pcs3 --security-opt seccomp:unconfined -e ETCD="192.168.10.10:2379" -e "MY_IP=192.168.10.22" --net=net1 --ip 192.168.10.22 --cap-add=NET_ADMIN  -v /sys/fs/cgroup:/sys/fs/cgroup:ro pcs
+sleep 30s && docker exec pcs2 journalctl && docker exec pcs2 pcs status
+[ `docker exec -it pcs3 pcs status | grep Online |wc -l` == 4 ] && echo "All tests OK"
 
