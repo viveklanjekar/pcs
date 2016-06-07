@@ -7,7 +7,7 @@ ENV container=docker FIRST_START=True
 RUN yum -y clean all && yum -y --setopt=tsflags=nodocs install pcs which conntrack \
 
 RUN yum install -y epel-release && yum install -y python-pip passwd
-RUN pip install https://github.com/mvdbeek/python-etcd/archive/master.zip && pip install https://github.com/mvdbeek/pacemaker-etcd/archive/5db3ab655c44a1ce0b8476010bbc1f447efa268b.zip &&\
+RUN pip install https://github.com/mvdbeek/python-etcd/archive/master.zip && pip install https://github.com/mvdbeek/pacemaker-etcd/archive/daf796cf02b0e01871058f0f98294fbdd8effe4f.zip &&\
     pip install https://github.com/ClusterLabs/crmsh/archive/master.zip
 
 LABEL RUN /usr/bin/docker run -d \$OPT1 --privileged --net=host -p 2224:2224 -v /sys/fs/cgroup:/sys/fs/cgroup -v /etc/localtime:/etc/localtime:ro -v /run/docker.sock:/run/docker.sock -v /usr/bin/docker:/usr/bin/docker:ro --name \$NAME \$IMAGE \$OPT2 \$OPT3
