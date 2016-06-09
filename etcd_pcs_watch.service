@@ -6,6 +6,7 @@ After=create_or_join_pcs.service
 ExecStart=/usr/bin/pcs-etcd watch
 EnvironmentFile=/etc/sysconfig/my_ip
 EnvironmentFile=/etc/sysconfig/etcd
+KillSignal=SIGINT
 
 [Install]
 WantedBy=multi-user.target
