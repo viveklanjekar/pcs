@@ -1,5 +1,7 @@
 # pcs
 
+[![Build Status](https://travis-ci.org/mvdbeek/pcs.svg?branch=master)](https://travis-ci.org/mvdbeek/pcs)
+
 [Docker](https://www.docker.com/) image with [Pacemaker](http://clusterlabs.org/) and [Corosync](https://corosync.github.io/corosync/) managed by [pcs](https://github.com/feist/pcs).
 Nodes of a PCS cluster are registered in etcd.
 
