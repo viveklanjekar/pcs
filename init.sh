@@ -8,5 +8,4 @@ if [[ "$MY_IP" == ""  ]]
 fi
 echo "MY_IP=$MY_IP" > /etc/sysconfig/my_ip
 echo "ETCD=$ETCD" > /etc/sysconfig/etcd
-echo "BOOTSTRAP=$BOOTSTRAP" > /etc/sysconfig/bootstrap
 exec /usr/lib/systemd/systemd
