@@ -9,7 +9,7 @@ RUN touch /var/lib/rpm/* && \
     yum -y --setopt=tsflags=nodocs install pcs which conntrack epel-release && \
     yum install -y python-pip passwd
 RUN pip install https://github.com/mvdbeek/python-etcd/archive/master.zip && \
-    pip install https://github.com/mvdbeek/pacemaker-etcd/archive/5f6310b6b7a2ddbe38e9a535d7cd23d8bfa5c558.zip &&\
+    pip install https://github.com/mvdbeek/pacemaker-etcd/archive/a119e134fc63dbf820cc0a01f8a41ee4cfabc5f7.zip &&\
     pip install https://github.com/ClusterLabs/crmsh/archive/master.zip
 
 LABEL RUN /usr/bin/docker run -d \$OPT1 --privileged --net=host -p 2224:2224 -v /sys/fs/cgroup:/sys/fs/cgroup -v /etc/localtime:/etc/localtime:ro -v /run/docker.sock:/run/docker.sock -v /usr/bin/docker:/usr/bin/docker:ro --name \$NAME \$IMAGE \$OPT2 \$OPT3
