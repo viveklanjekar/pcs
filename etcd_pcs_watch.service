@@ -1,0 +1,12 @@
+[Unit]
+Description=etcd pcs watch
+After=create_or_join_pcs.service
+
+[Service]
+ExecStart=/usr/bin/pcs-etcd watch
+EnvironmentFile=/etc/sysconfig/my_ip
+EnvironmentFile=/etc/sysconfig/etcd
+KillSignal=SIGINT
+
+[Install]
+WantedBy=multi-user.target
